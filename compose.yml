@@ -6,6 +6,10 @@ services:
     volumes:
       - ./models/checkpoints:/app/models/checkpoints
       - ./output:/app/output
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8080
+      - DOWNLOAD_MODEL=true
     ports:
       - 8080:8080
     deploy:

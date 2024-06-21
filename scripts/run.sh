@@ -17,6 +17,19 @@ function download_models() {
   done
 }
 
-download_models
+# check missing environment variables
+if [ -z "$PORT" ]; then
+  echo "PORT environment variable is missing. Using default port 8080."
+  PORT=8080
+fi
 
-python main.py --listen 0.0.0.0 --port 8080
+if [ -z "$HOST" ]; then
+  echo "HOST environment variable is missing. Using default listen address 0.0.0.0"
+  HOST=0.0.0.0
+fi
+
+if [ "$DOWNLOAD_MODELS" = "true" ]; then
+  download_models
+fi
+
+python main.py --listen $HOST --port $PORT
