@@ -10,7 +10,7 @@ function download_models() {
   do
     if [ ! -f "models/checkpoints/$(basename $model)" ]; then
       echo "Downloading $model..."
-      wget $model -O models/checkpoints/$(basename $model) -q
+      wget $model -O models/checkpoints/$(basename $model)
     else
       echo "Model $(basename $model) already exists."
     fi
