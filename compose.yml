@@ -1,0 +1,17 @@
+services:
+  comfyui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./models/checkpoints:/app/models/checkpoints
+      - ./output:/app/output
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
